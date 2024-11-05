@@ -1,0 +1,19 @@
+components:
+
+//src/views/portfolio
+Portfolio.vue
+PortfolioParent.vue
+NavigationBar.vue
+
+import ClassAnimSwitch from '@/components/anim/ClassAnimSwitch.vue';
+import HoverIdAnim from '@/components/anim/HoverIdAnim.vue';
+import HoverClassAnim from '@/components/anim/HoverClassAnim.vue';
+    import IdAnimSwitch from '@/components/anim/IdAnimSwitch.vue';
+    import IdAnim from '@/components/anim/IdAnim.vue';
+    import MediaComponent from '@/components/structures/MediaComponent.vue';
+    import NavigationBar from './NavigationBar.vue';
+    import Page from '@/components/structures/Page.vue';
+    import PageDesktopOnly from '@/components/structures/PageDesktopOnly.vue';
+    import wait from '@/assets/js/wait.js';
+
+npm install sass sass-loader

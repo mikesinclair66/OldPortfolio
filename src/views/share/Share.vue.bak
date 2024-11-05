@@ -1,0 +1,230 @@
+<template>
+    <div id="page-container">
+        <id-anim target="as-snippet-container" ref="as-snippet-container">
+            <div class="btn" @click="() => this.$refs['as-snippet-container'].toggle()">Close</div>
+            <div id="control-guide" v-if="imageCount > 1">
+                <div class="ctrl" @click="navigatePrevSnippet">&#60; Previous</div>
+                    / <div class="ctrl" @click="navigateNextSnippet">Next &#62;</div>
+            </div>
+            <img v-if="snippetSelected != -1" :src="imageList[snippetSelected]" alt="Selected snippet"
+                id="as-snippet" :style="processSnippet" />
+        </id-anim>
+
+        <page-desktop-only id="share-page">
+            <div id="content-share">
+                <div id="option-icons">
+                    <click-class-anim target="option-icon" @toggle-switch="() => optionSelected(0)" ref="option-icon-0"
+                    :disabled-if="() => this.optionIconSelected == 0">
+                        <img src="@/assets/images/icons/computer.png" alt="Inventory" />
+                        <img src="@/assets/images/icons/computer_color.png" alt="Inventory" />
+                    </click-class-anim>
+                    <click-class-anim target="option-icon" @toggle-switch="() => optionSelected(1)" ref="option-icon-1"
+                    :disabled-if="() => this.optionIconSelected == 1">
+                        <img src="@/assets/images/icons/share_image.png" alt="Share Image" />
+                        <img src="@/assets/images/icons/share_image_color.png" alt="Share Image" />
+                    </click-class-anim>
+                    <click-class-anim target="option-icon" @toggle-switch="() => optionSelected(2)" ref="option-icon-2"
+                    :disabled-if="() => this.optionIconSelected == 2">
+                        <img src="@/assets/images/icons/male.png" alt="My Profile" />
+                        <img src="@/assets/images/icons/male_color.png" alt="My Profile" />
+                    </click-class-anim>
+                    <class-anim target="upload-images-extension" ref="upload-images-extension">
+                        <div class="btn" @click="uploadImages">Upload Images</div>
+                    </class-anim>
+                </div>
+
+                <inventory-display v-if="optionIconSelected == 0" />
+                <browse-attachments v-if="optionIconSelected == 1" @data-entry="disableCaptionTip"
+                    :image-list="imageList" :image-count="imageCount" @snippet-selected="loadSnippet" />
+                <login-details v-if="optionIconSelected == 2" @data-entry="disableCaptionTip" />
+
+                <class-anim target="caption-tip" ref="caption-tip" toggle-on-render="true">
+                    <div class="tip-message" :style="optionIconSelected != 0 ? 'display: none' : ''">
+                        Head to the <img src="@/assets/images/icons/male_color.png" alt="Profile" />
+                        icon to upload submission.
+                    </div>
+                    <div class="tip-message" :style="optionIconSelected != 1 ? 'display: none' : ''">
+                        Choose photos of the product.<br /><br />
+                        <div class="btn" @click="uploadImages">Upload images</div>
+                        <input type="file" id="upload-images" @change="scanImages"
+                            hidden multiple accept="image/png, image/jpeg" />
+                    </div>
+                    <div class="tip-message" :style="optionIconSelected != 2 ? 'display: none' : ''">
+                        Log into each platform that you would like to publish your product.<br /><br />
+                        <div class="btn" @click="disableCaptionTip">Got It</div>
+                    </div>
+                </class-anim>
+                
+                <div id="logo-section">
+                    <a href="https://intivatechnologies.ca" target="_blank">
+                        <div id="caption">Powered by</div>
+                        <img src="@/assets/images/intiva_horizontal_black.png" alt="Intiva Technologies" />
+                    </a>
+                </div>
+            </div>
+        </page-desktop-only>
+    </div>
+</template>
+
+<script>
+    import '@/assets/css/share.scss';
+
+    import BrowseAttachments from '@/components/page_controllers/share/BrowseAttachments.vue';
+    import ClassAnim from '@/components/anim/ClassAnim.vue';
+    import IdAnim from '@/components/anim/IdAnim.vue';
+    import InventoryDisplay from '@/components/page_controllers/share/InventoryDisplay.vue';
+    import LoginDetails from '@/components/page_controllers/share/LoginDetails.vue';
+    import Page from '@/components/structures/Page.vue';
+    import PageDesktopOnly from '@/components/structures/PageDesktopOnly.vue';
+    import Parallax from '@/components/image/Parallax.vue';
+    import ClickClassAnim from '@/components/anim/ClickClassAnim.vue';
+    import wait from '@/assets/js/wait.js';
+
+    export default {
+        extends: Page,
+
+        components: {
+            BrowseAttachments,
+            ClassAnim,
+            IdAnim,
+            InventoryDisplay,
+            LoginDetails,
+            PageDesktopOnly,
+            Parallax,
+            ClickClassAnim
+        },
+
+        data(){
+            return {
+                optionIconSelected: -1,
+                imageList: [],
+                imageDims: [/*[0, 0]*/],
+                imageCount: 0,
+                snippetSelected: -1,
+                snippetWidth: 0
+            }
+        },
+
+        computed: {
+            processSnippet(){
+                return 'width: ' + this.snippetWidth + 'px';
+            }
+        },
+
+        methods: {
+            optionSelected(n){
+                this.optionIconSelected = n;
+                for(let i = 0; i < 3; i++){
+                    if(i != this.optionIconSelected && this.$refs['option-icon-' + i].isToggled())
+                        this.$refs['option-icon-' + i].toggleNative();
+                }
+                this.enableCaptionTip();
+            },
+
+            disableCaptionTip(){
+                if(this.$refs['caption-tip'].isToggled()){
+                    this.$refs['caption-tip'].toggle();
+
+                    if(this.optionIconSelected == 1)
+                        this.$refs['upload-images-extension'].toggle();
+                }
+            },
+
+            enableCaptionTip(){
+                if(this.optionIconSelected != 1){
+                    if(!this.$refs['caption-tip'].isToggled())
+                        this.$refs['caption-tip'].toggle();
+                    if(this.$refs['upload-images-extension'].isToggled())
+                        this.$refs['upload-images-extension'].toggle();
+                } else {
+                    if(this.imageCount == 0 && !this.$refs['caption-tip'].isToggled())
+                        this.$refs['caption-tip'].toggle();
+                    else if(this.imageCount > 0){
+                        this.$refs['upload-images-extension'].toggle();
+                        if(this.$refs['caption-tip'].isToggled())
+                            this.$refs['caption-tip'].toggle();
+                    }
+                }
+
+                if(this.optionIconSelected == 2){
+                    wait.millis(1750, () => {
+                        if(this.$refs['caption-tip'].isToggled())
+                            this.$refs['caption-tip'].toggle();
+                    });
+                }
+            },
+
+            uploadImages(){
+                document.getElementById("upload-images").click();
+            },
+
+            scanImages(ev){
+                if(ev.target.files.length > 1){
+                    let promises = [];
+                    for (let file of ev.target.files) {
+                        let filePromise = new Promise(res => {
+                            let reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onload = () => res(reader.result);
+                        });
+                        promises.push(filePromise);
+                    }
+                    Promise.all(promises).then(blobs => {
+                        for(let blob of blobs){
+                            let img = new Image();
+                            img.src = blob;
+                            img.onload = () => this.imageDims.push([img.width, img.height]);
+                            this.imageList.push(blob);
+                        }
+
+                        this.imageCount = this.imageList.length;
+                    });
+                } else {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(ev.target.files[0]);
+                    reader.onload = () => {
+                        this.imageList.push(reader.result);
+                        this.imageCount = this.imageList.length;
+
+                        let img = new Image();
+                        img.src = reader.result;
+                        img.onload = () => this.imageDims.push([img.width, img.height]);
+                    };
+                }
+
+                this.disableCaptionTip();
+            },
+
+            loadSnippet(data){
+                let heightAvail = window.innerHeight * 0.75, dimRatio =
+                    this.imageDims[data.selected][0] / this.imageDims[data.selected][1];
+                this.snippetSelected = data.selected;
+                this.snippetWidth = dimRatio * heightAvail;
+                wait.millis(250, this.$refs['as-snippet-container'].toggle);
+            },
+
+            navigatePrevSnippet(){
+                if(this.snippetSelected - 1 < 0)
+                    this.snippetSelected = this.imageCount - 1;
+                else
+                    --this.snippetSelected;
+            },
+
+            navigateNextSnippet(){
+                if(this.snippetSelected + 1 == this.imageCount)
+                    this.snippetSelected = 0;
+                else
+                    ++this.snippetSelected;
+            }
+        },
+
+        mounted(){
+            let optionIconSelected = 0;
+            if(new URLSearchParams(window.location.search).get('landOnLogin') == 'true')
+                optionIconSelected = 2;
+            
+            this.$refs['option-icon-' + optionIconSelected].toggle();
+            this.optionIconSelected = optionIconSelected;
+        }
+    }
+</script>

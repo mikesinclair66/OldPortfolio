@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+#portfolio{
+    border-radius: 0 0 30pt 30pt;
+    background-image: linear-gradient(to bottom, white, #e3e3e3, #d6d6d6);
+    margin: 0 75pt 50pt 75pt;
+    box-shadow: 1px 2px 4px #979797;
+}
+
+#portfolio-header{
+    border-radius: 30pt 30pt 0 0;
+    border-bottom: solid rgb(25, 25, 25) 2pt;
+    background-image: linear-gradient(0deg, rgb(1, 178, 211) rgb(0, 211, 168));
+    display: block;
+    color: white;
+    text-align: center;
+    margin: 50pt 75pt 0 75pt;
+    padding: 30pt 0 12pt 0;
+    box-shadow: 1px 2px 4px #979797;
+
+    h1{
+        display: inline-block;
+    }
+}
+
+.bullet{
+    display: inline-block;
+    width: 11pt;
+    margin-right: 5pt;
+}
+
+#bullets{
+    margin-top: 28pt;
+
+    h2{
+        display: inline-block;
+        margin-right: 22pt;
+        position: relative;
+        top: 1pt;
+        cursor: pointer;
+
+        &:active, &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+.side-by-side-element{
+    width: calc(50% - 50pt);
+    padding: 20pt;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.side-by-side-right{
+    margin-left: 20pt;
+    position: relative;
+    left: 5pt;
+}
+
+#sm-container-bottom{
+    text-align: center;
+    margin-bottom: 50pt;
+
+    a{
+        margin-right: 25pt;
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
+#sm-container-bottom img{
+    display: inline-block;
+}
+
+#sm-container-vertical, #vertical-line-break{
+    position: absolute;
+    left: calc(50% + 3pt);
+    top: 243pt;
+}
+
+#vertical-line-break{
+    transform: translateX(-50%);
+    width: 1pt;
+    background-color: rgb(120, 120, 120);
+}
+
+#sm-container-vertical a{
+    display: block;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+#sm-container-vertical.sm-container img{
+    width: 20pt;
+}
+
+#sm-container-vertical.sm-container img:hover,
+    #sm-container-vertical.sm-container img:active{
+    width: 28pt;
+}
+
+#sm-container-vertical .mail-icon-container, #sm-container-vertical .yt-icon-container{
+    display: none;
+}
+
+#computer{
+    height: 281.25pt;
+    width: 225pt;
+    position: relative;
+    top: 5pt;
+}
+
+#monitor, #monitor-backlit{
+    width: 100%;
+    height: 281.25pt;
+    position: relative;
+    z-index: 2;
+}
+
+#monitor-backlit{
+    position: absolute;
+    background-color: rgb(35, 35, 35);
+    border-radius: 5pt;
+}
+
+#monitor-backlit .side-by-side{
+    width: 50%;
+    padding: 0;
+}
+
+#monitor-frame{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 3;
+    border-radius: 4pt;
+    box-shadow: 1px 2px 4px #888888;
+    pointer-events: none;
+}
+
+.monitor-table{
+    margin: 20pt 0 25pt 0;
+}
+
+#monitor-backlit a{
+    color: #00D2D0;
+}
+
+#monitor-page-1 .monitor-table{
+    position: relative;
+    left: 29pt;
+}
+
+#monitor-page-2 .monitor-table, #monitor-page-5 .monitor-table{
+    margin-left: 25pt;
+    margin-right: 25pt;
+}
+
+#monitor-page-6 .monitor-table{
+    margin-left: 12pt;
+    margin-right: 12pt;
+}
+
+#monitor-page-6 .monitor-caption{
+    margin-top: 40pt;
+}
+
+.monitor-table td{
+    border-bottom: solid #00D2D0 1pt;
+    border-right: solid #00D2D0 1pt;
+}
+
+.monitor-table tr td:first-child{
+    text-align: right;
+    padding-right: 6pt;
+}
+
+.monitor-table tr td:last-child{
+    border-right: 0;
+    padding-left: 6pt;
+}
+
+.monitor-table tr:last-child td{
+    border-bottom: 0;
+}
+
+.monitor-caption{
+    padding: 0 20pt 0 20pt;
+    text-align: center;
+}
+
+.monitor-logo-row{
+    width: 100%;
+    text-align: center;
+
+    &:last-child{
+        margin-top: -32pt;
+    }
+
+    .monitor-logo-container{
+        margin-left: 8pt;
+        margin-right: 8pt;
+
+        &:first-child{
+            margin-left: 0;
+        }
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
+a.monitor-logo-container, a.monitor-logo-container{
+    display: inline-block;
+}
+
+.monitor-logo-container{
+    width: 75pt;
+    height: 75pt;
+    position: relative;
+
+    .monitor-logo-single{
+        img{
+            width: 75pt;
+        }
+    }
+    
+    .monitor-logo, .monitor-logo-0, .monitor-logo-1{
+        transition: 0.2s linear;
+    
+        img{
+            width: 75pt;
+    
+            &:first-child{
+                transform: rotateY(-180deg);
+                /*opacity: 0;*/
+                position: absolute;
+            }
+    
+            &:last-child{
+                position: relative;
+                pointer-events: none;
+                /*opacity: 1;*/
+            }
+        }
+    }
+
+    .monitor-logo-0{
+        transform: rotateY(90deg);
+    }
+
+    .monitor-logo-1{
+        transform: rotateY(180deg);
+    }
+}
+
+#vik-logo-container{
+    transform: translateY(-50%);
+    position: relative;
+    top: 2pt;
+
+    img{
+        &:last-child{
+            transform: translateY(50%);
+        }
+    }
+}
+
+#control-panel{
+    width: calc(100% - 6pt);
+    height: 80pt;
+    border: outset #d1d1d1 4pt;
+    border-top: 0;
+    background-color: #e3e3e3;
+    border-radius: 4pt;
+}
+
+#cp-options{
+    text-align: center;
+}
+
+#cp-disk-lcd-component, #cp-disk-lcd-component-anim{
+    display: inline-block;
+    position: relative;
+    top: 3pt;
+    z-index: 3;
+}
+
+#cp-disk-lcd-component-anim{
+    cursor: pointer;
+
+    #cp-disk-lcd-eject, #cp-disk-lcd-eject-anim{
+        box-shadow: inset 0 0 8px #383838;
+    }
+}
+
+#cp-disk-lcd{
+    background-color: rgb(118, 0, 0);
+    border: solid rgb(51, 0, 0) 2pt;
+    display: inline-block;
+    width: 146pt;
+    height: 21.5pt;
+}
+
+#cp-disk-lcd-label{
+    font-family: "VT323", sans-serif;
+    font-size: 15pt;
+    color: red;
+    position: relative;
+    top: 3pt;
+}
+
+#cp-disk-lcd-eject, #cp-disk-lcd-eject-anim{
+    transition: 0.2s;
+    width: 24pt;
+    height: 24pt;
+    border: solid grey 1pt;
+    background-image: radial-gradient(#a1a1a1, #e3e3e3);
+    display: inline-block;
+    position: relative;
+    top: 6.5pt;
+
+    img{
+        margin-top: 2pt;
+        width: 18pt;
+
+        &:first-child{
+            position: absolute;
+        }
+
+        &:last-child{
+            position: relative;
+            transition: 0.2s;
+            opacity: 0;
+        }
+    }
+}
+
+#cp-disk-lcd-eject-anim img:last-child{
+    opacity: 1;
+}
+
+.monitor-page{
+    font-family: "IBM Plex Mono", sans-serif;
+    color: #00D2D0;
+    font-weight: 700;
+}
+
+#cp-disk-slot{
+    margin-top: -115pt;
+    position: relative;
+    z-index: 1;
+}
+
+#cp-disk-slot img, #cp-disk-freeroam img{
+    width: 165pt;
+}
+
+#cp-disk-slot img:first-child{
+    position: relative;
+    z-index: 2;
+    margin-bottom: -4pt;
+}
+
+#cp-disk-freeroam, #cp-disk-freeroam-anim{
+    position: absolute;
+    transition: 0.4s;
+    z-index: 1;
+}
+
+#cp-disk-freeroam img, #cp-disk-freeroam-anim img{
+    width: 80pt;
+    transform: translate(-50%, -50%);
+}
+
+#cp-disk-freeroam-anim img{
+    width: 120pt;
+}
+
+#cp-fans{
+    display: none;
+}
+
+.cp-fan{
+    background-color: black;
+    height: 1pt;
+    width: calc(100% - 8pt);
+    margin-left: 4pt;
+    margin-top: 4pt;
+    border: outset 1pt black;
+}
+
+#monitor-page-0{
+    height: 100%;
+    margin-top: 14pt;
+}
+
+#page-options img, #page-options-0 img, #page-options-1 img{
+    transition: 0.45s linear;
+    width: 80pt;
+    margin-left: 10pt;
+    margin-right: 10pt;
+    cursor: pointer;
+}
+
+.page-option-row{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8pt;
+}
+
+#page-options img{
+    transform: rotate(0deg);
+}
+
+#page-options-0 img{
+    transform: rotate(-3deg);
+}
+
+#page-options-1 img{
+    transform: rotate(2deg);
+}
+
+@media only screen and (min-width: 1328px){
+    #computer{
+        width: 100%;
+    }
+
+    #monitor, #control-panel{
+        display: inline-block;
+    }
+
+    #monitor, #monitor-backlit{
+        width: 225pt;
+    }
+
+    #control-panel{
+        position: relative;
+        left: 0;
+        width: calc(100% - 229pt);
+        height: calc(100% - 8pt);
+        vertical-align: top;
+        border-top: outset 4pt #d1d1d1;
+        border-left: 0;
+    }
+
+    #cp-fans{
+        display: block;
+    }
+
+    #cp-disk-lcd-component, #cp-disk-lcd-component-anim{
+        position: relative;
+        top: 25pt;
+    }
+
+    #cp-disk-lcd{
+        width: 120pt;
+    }
+
+    #cp-disk-lcd-eject, #cp-disk-lcd-eject-anim{
+        top: 10pt;
+    }
+
+    #cp-disk-lcd-label{
+        font-size: 14pt;
+    }
+
+    #cp-disk-slot{
+        margin-top: 0;
+        position: relative;
+        top: 64pt;
+
+        img{
+            width: 115pt;
+
+            &:first-child{
+                margin-bottom: -6.5pt;
+            }
+        }
+    }
+
+    #cp-disk-freeroam img, #cp-disk-freeroam-anim img{
+        width: 80pt;
+    }
+}
+
+@media only screen and (min-width: 1358px){
+    #cp-disk-lcd-eject, #cp-disk-lcd-eject-anim{
+        top: 7.5pt;
+    }
+
+    #cp-disk-slot img{
+        width: 135pt;
+    }
+
+    #cp-disk-freeroam img, #cp-disk-freeroam-anim img{
+        width: 110pt;
+    }
+}

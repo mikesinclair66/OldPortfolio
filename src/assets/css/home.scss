@@ -1,0 +1,335 @@
+/*temp info banner*/
+#info-banner, #info-banner-0, #info-banner-1{
+    /* temp */
+    transition: 0.1s;
+
+    /* transition: 0.5s; */
+    text-align: center;
+    background-image: linear-gradient(to bottom, white, #e6e6e6);
+    box-shadow: 0 2px 4px #888888;
+    border-radius: 30pt;
+    padding: 15pt 10pt;
+    margin: 0 25pt;
+    position: absolute;
+    z-index: 2;
+    top: calc(50% + 35pt);
+    transform: translateY(-50%);
+
+    .info{
+        text-align: center;
+    }
+
+    .btn{
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+    }
+
+    footer{
+        margin-left: -10pt;
+        margin-right: -10pt;
+    }
+}
+
+#info-banner-0{
+    transform: translateY(-50%) rotate(-0.5deg);
+}
+
+#info-banner-1{
+    transform: translateY(-50%) rotate(0.5deg);
+}
+
+/* DON'T DELETE - use when done w/ temp
+#info-banner, #info-banner-anim{
+    transition: 0.5s;
+    text-align: center;
+    background-image: linear-gradient(to bottom, white, #e6e6e6);
+    box-shadow: 0 2px 4px #888888;
+    border-radius: 30pt;
+    padding: 15pt 10pt;
+    margin: 0 25pt;
+    position: absolute;
+    z-index: 2;
+    top: calc(50% + 35pt);
+    transform: translateY(-50%);
+
+    .info{
+        text-align: center;
+    }
+
+    .btn{
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+    }
+
+    footer{
+        margin-left: -10pt;
+        margin-right: -10pt;
+    }
+}
+*/
+
+#info-banner-anim{
+    top: 0;
+    margin-top: -55%;
+}
+
+#ns-popup, #ns-popup-anim{
+    transition: 0.2s;
+    position: fixed;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    height: 60pt;
+    display: none;
+}
+
+#ns-popup-anim{
+    position: absolute;
+    transition-delay: 0.2s;
+    margin-top: -78pt;
+}
+
+#newsletter-signup, #newsletter-signup-anim{
+    color: rgb(25, 25, 25);
+    position: relative;
+
+    .theme-btn{
+        margin-left: 6pt;
+    }
+
+    select, input{
+        margin-top: 6pt;
+        margin-bottom: 6pt;
+    }
+}
+
+#newsletter-options, #newsletter-options-anim{
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 70pt);
+}
+
+#ns-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ns-option{
+    height: 33.33%;
+
+    .gradient-rotator-parent{
+        position: absolute;
+        width: 100%;
+        height: 33.33%;
+        color: rgb(25, 25, 25);
+        display: flex;
+
+        .std-fadeout, .std-fadeout-anim{
+            height: 100%;
+        }
+    }
+}
+
+.ns-option-button{
+    background-image: linear-gradient(to bottom, rgb(60, 60, 60), rgb(25, 25, 25), black);
+    font-size: 12pt;
+    cursor: pointer;
+    height: 70%;
+    width: 125pt;
+
+    &:hover{
+        background-image: linear-gradient(to bottom, rgb(90, 90, 90), rgb(50, 50, 50), black);
+    }
+
+    &:active{
+        background-image: linear-gradient(to bottom, black, rgb(35, 35, 35), rgb(70, 70, 70));
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.ns-option-button-label{
+    display: inline-block;
+    transform: translateY(-50%);
+    font-family: Inter, sans-serif;
+    color: white;
+    font-size: 16pt;
+}
+
+#ns-apps-option{
+    .ns-option-button{
+        clip-path: polygon(0 0, 100% 0, 0 100%, 0 100%);
+    }
+
+    .ns-option-button-label{
+        margin-top: calc(50% - 49pt);
+        margin-left: 6pt;
+    }
+}
+
+#ns-tech-option{
+    .ns-option-button{
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+        margin-left: calc(100% - 125pt);
+        position: relative;
+        top: 30%;
+    }
+
+    .ns-option-button-label{
+        position: absolute;
+        bottom: 7pt;
+        right: 7pt;
+        transform: none;
+    }
+}
+
+#home-page #default-footer{
+    position: absolute;
+    top: calc(100% - 1px);
+    width: calc(100% - 24pt);
+}
+
+#home-page .tooltip{
+    top: 50pt;
+}
+
+@media only screen and (orientation: landscape){
+    /* temp */
+    #info-banner, #info-banner-0, #info-banner-1{
+        margin-top: 0;
+        top: 82pt;
+        left: 50%;
+        margin: 0;
+        margin-bottom: 25pt;
+        transform: translateX(-50%);
+
+        .btn{
+            margin-top: 10pt;
+            margin-bottom: 0;
+        }
+    }
+
+    #info-banner-0{
+        transform: translateX(-50%) rotate(-1deg);
+    }
+    
+    #info-banner-1{
+        transform: translateX(-50%) rotate(1deg);
+    }
+
+    /*
+    #info-banner, #info-banner-anim{
+        margin-top: 0;
+        top: 82pt;
+        left: 50%;
+        margin: 0;
+        margin-bottom: 25pt;
+        transform: translateX(-50%);
+
+        .btn{
+            margin-top: 10pt;
+            margin-bottom: 0;
+        }
+    }
+    */
+
+    #info-banner-anim{
+        top: 0;
+        margin-top: -75%;
+    }
+
+    #ns-popup-anim{
+        margin-top: -60pt;
+    }
+
+    #newsletter-signup, #newsletter-signup-anim{
+        select, input{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .ns-option-button{
+        height: 100%;
+    }
+
+    #ns-tech-option{
+        .ns-option-button{
+            position: static;
+        }
+
+        .ns-option-button-label{
+            margin-left: 72pt;
+            margin-top: calc(50% - 15pt);
+        }
+    }
+
+    #home-page #default-footer{
+        width: 100%;
+    }
+
+    @media only screen and (min-width: 1025px){
+        /* temp */
+        #info-banner, #info-banner-0, #info-banner-1{
+            top: 50%;
+            left: 50%;
+            margin-left: 0;
+            transform: translate(-50%, calc(-50% + 20pt)) rotate(0deg);
+
+            .btn{
+                margin-top: 20pt;
+                margin-bottom: 10pt;
+            }
+
+            .desktop-only{
+                padding-left: 25pt;
+                padding-right: 25pt;
+            }
+        }
+
+        #info-banner-0{
+            transform: translate(-50%, calc(-50% + 20pt)) rotate(-1deg);
+        }
+        
+        #info-banner-1{
+            transform: translate(-50%, calc(-50% + 20pt)) rotate(1deg);
+        }
+
+        /*
+        #info-banner, #info-banner-anim{
+            top: 50%;
+            left: 50%;
+            margin-left: 0;
+            transform: translate(-50%, calc(-50% + 20pt));
+
+            .btn{
+                margin-top: 20pt;
+                margin-bottom: 10pt;
+            }
+
+            .desktop-only{
+                padding-left: 25pt;
+                padding-right: 25pt;
+            }
+        }
+        */
+
+        #info-banner-anim{
+            top: 0;
+            margin-top: -20%;
+        }
+    }
+}
+
+/*
+@media only screen and (max-height: 425px){
+    
+}
+*/
